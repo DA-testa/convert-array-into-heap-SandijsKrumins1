@@ -3,8 +3,6 @@
 
 def build_heap(data):
     swaps = []
-    # TODO: Creat heap and heap sort
-    test="false"
     n = len(data)
     for i in range(int((n/2)-1),-1,-1):
         l = 2*i+1
@@ -30,7 +28,6 @@ def build_heap(data):
         if smallest != i:
             data[i], data[smallest] = data[smallest], data[i]
             swaps.append((i,smallest))
-    print(data)
     return swaps
 
 
