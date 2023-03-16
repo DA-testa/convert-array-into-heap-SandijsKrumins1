@@ -4,33 +4,58 @@
 def build_heap(data):
     swaps = []
     # TODO: Creat heap and heap sort
-    # try to achieve  O(n) and not O(n2)
-
-
+    test="false"
+    n = len(data)
+    for i in range(int((n/2)-1),-1,-1):
+        l = 2*i+1
+        r = 2*i+2
+        if l < n and data[l] < data[i]:
+            smallest = l
+        else:
+            smallest = i
+        if r < n and data[r] < data[smallest]:
+            smallest = r
+        if smallest != i:
+            data[i], data[smallest] = data[smallest], data[i]
+            swaps.append((i,smallest))
+        i=smallest
+        l = 2*i+1
+        r = 2*i+2
+        if l < n and data[l] < data[i]:
+            smallest = l
+        else:
+            smallest = i
+        if r < n and data[r] < data[smallest]:
+            smallest = r
+        if smallest != i:
+            data[i], data[smallest] = data[smallest], data[i]
+            swaps.append((i,smallest))
+    print(data)
     return swaps
 
 
 def main():
+    print("Input Mode: ")
+    mode = input()
+    if "I" in mode:
+        print("Input: ")
+        n = int(input())
+        data = list(map(int, input().split()))
+    else:
+        print("Input File: ")
+        filename= input()
+        if "a" in filename:
+            print("Filename containing a is not allowed")
+            return
+        folder = './tests/'
+        file = open(folder + filename, 'r')
+        n = int(file.readline())
+        data = list(map(int, file.readline().split()))
     
-    # TODO : add input and corresponding checks
-    # add another input for I or F 
-    # first two tests are from keyboard, third test is from a file
-
-
-    # input from keyboard
-    n = int(input())
-    data = list(map(int, input().split()))
-
-    # checks if lenght of data is the same as the said lenght
     assert len(data) == n
-
-    # calls function to assess the data 
-    # and give back all swaps
     swaps = build_heap(data)
 
-    # TODO: output how many swaps were made, 
-    # this number should be less than 4n (less than 4*len(data))
-
+    
 
     # output all swaps
     print(len(swaps))
